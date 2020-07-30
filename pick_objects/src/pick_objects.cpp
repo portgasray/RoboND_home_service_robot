@@ -8,6 +8,7 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
   ros::init(argc, argv, "pick_objects");
+  ros::NodeHandle n;
 
   // tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
@@ -29,19 +30,20 @@ int main(int argc, char** argv){
   dropoff_goal.target_pose.header.stamp = ros::Time::now();
 
   // Define a position and orientation for the robot to reach
-  pickup_goal.target_pose.pose.position.x = 4.1609;
-  pickup_goal.target_pose.pose.position.y = 4.2602;
+  pickup_goal.target_pose.pose.position.x = 4.16;
+  pickup_goal.target_pose.pose.position.y = 4.26;
   pickup_goal.target_pose.pose.position.z = 0.0;
-  pickup_goal.target_pose.pose.orientation.w = 0.9997;
+  pickup_goal.target_pose.pose.orientation.w = 1;
   // pickup_goal.target_pose.pose.orientation.y = 4.17;
 
-  dropoff_goal.target_pose.pose.position.x = -3.5854;
-  dropoff_goal.target_pose.pose.position.y = 3.8062;
+  dropoff_goal.target_pose.pose.position.x = -3.58;
+  dropoff_goal.target_pose.pose.position.y = 3.81;
   dropoff_goal.target_pose.pose.position.z = 0.0;
-  dropoff_goal.target_pose.pose.orientation.w = 0.7240;
+  dropoff_goal.target_pose.pose.orientation.w = 0.5;
   // dropoff_goal.target_pose.pose.orientation.y = 3.94;
 
-   // Send the goal position and orientation for the robot to reach
+  ros::Duration(5.0).sleep();
+  // Send the goal position and orientation for the robot to reach
   ROS_INFO("Sending pick up goal");
   ac.sendGoal(pickup_goal);
 
@@ -55,6 +57,7 @@ int main(int argc, char** argv){
   if( ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED ) {
     ROS_INFO("Hooray, the robot moved to pick up place");
     pick_up_success = true;
+
   }
   else {
     ROS_INFO("The robot failed to move to pick up place for some reason");
