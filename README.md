@@ -1,9 +1,9 @@
 # RoboND_home_service_robot
 Laste project of Robotics Nano program for path planning
 
-* CATKIN_IGNORE put in `../turtlebot_apps/turtlebot_teleop/.` and `../turtlebot_interactions/turtlebot_simulator/.`
+* Put `CATKIN_IGNORE` in `../turtlebot_apps/turtlebot_teleop/.` and `../turtlebot_interactions/turtlebot_simulator/.`
 
-update `turtlebot_simulator\turtlebot_gazebo/launch/includes/kobuki.launch.xml`
+* Update `turtlebot_simulator\turtlebot_gazebo/launch/includes/kobuki.launch.xml`
 
 ```
 <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
